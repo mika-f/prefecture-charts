@@ -4,7 +4,7 @@
 
 ```ini
 # globals
-RESAS_API_TOKEN=xxx
+NEXT_PUBLIC_RESAS_API_KEY=xxx
 
 # for testing
 CHROMATIC_PROJECT_TOKEN=xxx
