@@ -1,5 +1,15 @@
 # README
 
+## Environment Variables
+
+```ini
+# globals
+RESAS_API_TOKEN=xxx
+
+# for testing
+CHROMATIC_PROJECT_TOKEN=xxx
+```
+
 ## Development
 
 - `pnpm install`
