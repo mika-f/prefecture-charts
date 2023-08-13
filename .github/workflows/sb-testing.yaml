@@ -30,13 +30,16 @@ jobs:
       - uses: ./.github/composite/node-install
 
       - name: Install Playwright
-        run: pnpm dlx playwright@1.35.0 install --with-deps
+        run: |
+          pnpm exec playwright install --with-deps
 
       - name: Build Storybook
         run: pnpm build-storybook --quiet
 
+      # wait-on tcp:6006 is not working on GitHub Actions (and other some Linux machines)
+      # ref: https://github.com/jeffbski/wait-on/issues/137, https://github.com/jeffbski/wait-on/issues/133
       - name: Serve Storybook and Run tests
         run: |
           pnpm dlx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
             "pnpm dlx http-server storybook-static --port 6006 --silent" \
-            "pnpm dlx wait-on tcp:6006 && pnpm test-storybook"
+            "pnpm dlx wait-on tcp:127.0.0.1:6006 && pnpm test-storybook"
