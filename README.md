@@ -6,7 +6,7 @@
 # globals
 NEXT_PUBLIC_RESAS_API_KEY=xxx
 
-# for testing
+# for testing (optional, but required for chromatic - VRT)
 CHROMATIC_PROJECT_TOKEN=xxx
 ```
 
