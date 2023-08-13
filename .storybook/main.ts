@@ -1,4 +1,11 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import type { AddonOptionsBabel } from "@storybook/addon-coverage";
+
+const coverage: AddonOptionsBabel = {
+  istanbul: {
+    include: ["**/src/**/*.stories.{js,jsx,ts,tsx}"],
+  },
+};
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -8,6 +15,14 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     "@storybook/addon-a11y",
+    {
+      name: "@storybook/addon-coverage",
+      options: {
+        istanbul: {
+          coverage,
+        },
+      },
+    },
   ],
   framework: {
     name: "@storybook/nextjs",
