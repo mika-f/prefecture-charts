@@ -1,0 +1,25 @@
+name: Unit Testing for JavaScript
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - "**.js"
+      - "**.ts"
+      - "**.tsx"
+      - "pnpm-lock.yaml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: ./.github/composite/node-install
+
+      - name: Run Vitest
+        run: pnpm run test
