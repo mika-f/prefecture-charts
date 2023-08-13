@@ -1,0 +1,42 @@
+# Chromatic does not supports testing of a11y yet
+# This Actions supports interaction tests and a11y tests
+name: Storybook Testing for Components
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - "**.js"
+      - "**.ts"
+      - "**.tsx"
+      - "pnpm-lock.yaml"
+
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: ./.github/composite/node-install
+
+      - name: Install Playwright
+        run: pnpm dlx playwright@1.35.0 install --with-deps
+
+      - name: Build Storybook
+        run: pnpm build-storybook --quiet
+
+      - name: Serve Storybook and Run tests
+        run: |
+          pnpm dlx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+            "pnpm dlx http-server storybook-static --port 6006 --silent" \
+            "pnpm dlx wait-on tcp:6006 && pnpm test-storybook"
