@@ -2,7 +2,7 @@ type ApiResponse<T> = { message: string | null; result: T };
 
 const transform = (args: Record<string, unknown>): Record<string, string> => {
   return Object.fromEntries(
-    Object.entries(args).map(([key, value]) => {
+    Object.entries(args ?? {}).map(([key, value]) => {
       if (Array.isArray(value)) {
         return [key, value.join(",")];
       }
@@ -28,6 +28,15 @@ const fetcher = async <T>(endpoint: string, args: Record<string, unknown>): Prom
   });
 
   return await res.json();
+};
+
+// swr fetcher
+const f = async <T>(args: unknown | unknown[]): Promise<ApiResponse<T>> => {
+  if (Array.isArray(args)) {
+    return fetcher(args[0] as string, args[1] as Record<string, unknown>);
+  }
+
+  return fetcher(args as string, {});
 };
 
 // typings
@@ -70,7 +79,7 @@ type GetPopulationCompositionPerYearResponse = {
   data: PopulationDataWithLabel[];
 };
 
-export { fetcher };
+export { fetcher, f };
 
 export type {
   PrefCode,
