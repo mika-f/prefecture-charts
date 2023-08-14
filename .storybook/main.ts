@@ -23,6 +23,12 @@ const config: StorybookConfig = {
         },
       },
     },
+    {
+      name: "@storybook/addon-postcss",
+      options: {
+        postCss: true,
+      },
+    },
   ],
   framework: {
     name: "@storybook/nextjs",
