@@ -12,6 +12,10 @@ const Container = styled.div`
   height: 100%;
 `;
 
+const FixedHeader = styled(Header)`
+  flex-shrink: 0;
+`;
+
 const Content = styled.main`
   flex-grow: 1;
 `;
@@ -23,7 +27,7 @@ type Props = {
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Container>
-      <Header />
+      <FixedHeader />
       <Content>{children}</Content>
       <Footer />
     </Container>

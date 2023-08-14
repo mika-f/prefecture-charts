@@ -11,8 +11,12 @@ const Wrapper = styled.footer`
   font-size: 0.75rem;
 `;
 
-const Footer: React.FC = () => {
-  return <Wrapper>&copy; 2023 Natsuneko</Wrapper>;
+type Props = {
+  className?: string;
+};
+
+const Footer: React.FC<Props> = ({ className }) => {
+  return <Wrapper className={className}>&copy; 2023 Natsuneko</Wrapper>;
 };
 
 export { Footer };

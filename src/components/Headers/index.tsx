@@ -15,8 +15,12 @@ const Wrapper = styled.header`
   justify-content: center;
 `;
 
-const Header: React.FC = () => {
-  return <Wrapper>都道府県別の人口推移グラフ</Wrapper>;
+type Props = {
+  className?: string;
+};
+
+const Header: React.FC<Props> = ({ className }) => {
+  return <Wrapper className={className}>都道府県別の人口推移グラフ</Wrapper>;
 };
 
 export { Header };
