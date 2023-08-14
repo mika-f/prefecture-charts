@@ -1,9 +1,11 @@
-import { StyledComponentsRegistry } from "@/lib/registry";
-import "./globals.css";
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { createGlobalStyle } from "styled-components";
+
 import { GlobalStyles } from "@/components/GlobalStyles";
+import { StyledComponentsRegistry } from "@/lib/registry";
+
+import type { Metadata } from "next";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body className={inter.className}>
         <StyledComponentsRegistry>
           <GlobalStyles />
