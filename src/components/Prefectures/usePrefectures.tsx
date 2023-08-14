@@ -1,9 +1,9 @@
 import useSWRImmutable from "swr/immutable";
 
-import { f } from "@/lib/resas";
+import { GetPrefecturesResponse, f } from "@/lib/resas";
 
 const usePrefectures = () => {
-  const { data, error, isLoading } = useSWRImmutable("/v1/prefectures", f);
+  const { data, error, isLoading } = useSWRImmutable("/v1/prefectures", (w) => f<GetPrefecturesResponse>(w));
 
   return {
     data,
