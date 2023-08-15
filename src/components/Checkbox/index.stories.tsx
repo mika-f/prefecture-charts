@@ -31,8 +31,6 @@ export const Checked: Story = {
   },
 };
 
-export const Disabled: Story = {};
-
 export const EventHandlers: Story = {
   args: {
     label: "Event Handlers Checkbox",
