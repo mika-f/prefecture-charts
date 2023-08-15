@@ -11,10 +11,6 @@ import type { Metadata } from "next";
 import { Heading2 } from "@/components/Headings";
 import { PopulationGraph } from "@/components/PopulationGraph";
 
-export const metadata: Metadata = {
-  title: "都道府県別の人口推移グラフ",
-};
-
 export default function Home() {
   const [prefectures, setPrefectures] = useState<{ prefCode: PrefCode; prefName: string }[]>([]);
   const onPrefectureChanged = useCallback((prefectures: { prefCode: PrefCode; prefName: string }[]) => {
